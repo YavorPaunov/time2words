@@ -5,7 +5,7 @@ from chain import Chain
 from commands import LessThan1M, LessThan1H, LessThan23H, LessThan6D1H
 from commands import LessThan25D10H, LessThan11MM, LessThan10Y, MoreThan10Y
 
-__version__ = '0.0.1.dev01'
+__version__ = '0.0.1'
 
 
 def approx_time(loc, **kwargs):
