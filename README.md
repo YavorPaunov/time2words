@@ -1,2 +1,2 @@
 # time2words
-A Python library to convert numerical representation of time to text.
+A Python library for converting numerical representation of time to text.
