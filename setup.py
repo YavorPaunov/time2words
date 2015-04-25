@@ -22,14 +22,16 @@ long_description = read('README.md', 'CHANGES.md')
 
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')\
-        + pypandoc.convert('CHANGES.md', 'rst')
+    long_description = "\r\n".join((pypandoc.convert('README.md', 'rst'),
+                                   pypandoc.convert('CHANGES.md', 'rst')))
+
 except (IOError, ImportError):
     pass
 
 setup(name='time2words',
       version=time2words.__version__,
-      description='Converts from numerical to textual representation of time.',
+      description='A Python library for converting numerical representation '
+      'of time to text.',
       long_description=long_description,
       url='https://github.com/YavorPaunov/time2words',
       author='Yavor Paunov',
