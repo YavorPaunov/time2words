@@ -18,18 +18,21 @@ def read(*filenames, **kwargs):
     return sep.join(buf)
 
 
-long_description = read('README.md', 'CHANGES.md')
+long_description = read('README.rst', 'CHANGES.rst')
 
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')\
-        + pypandoc.convert('CHANGES.md', 'rst')
+    long_description = read('README.srt')
+    long_description += "\r\n"
+    long_description += read('CHANGES.srt')
+
 except (IOError, ImportError):
     pass
 
 setup(name='time2words',
       version=time2words.__version__,
-      description='Converts from numerical to textual representation of time.',
+      description='A Python library for converting numerical representation '
+      'of time to text.',
       long_description=long_description,
       url='https://github.com/YavorPaunov/time2words',
       author='Yavor Paunov',

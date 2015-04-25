@@ -1,8 +1,8 @@
 from num2words import num2words
-from chain import Command
+from chain import _Command
 
 
-def append_unit_suffix(value, suffix_singular, suffix_plural, presuffix=None):
+def _append_unit_suffix(value, suffix_singular, suffix_plural, presuffix=None):
     suffixed_value = []
     suffixed_value.append(num2words(value))
     if presuffix:
@@ -11,52 +11,52 @@ def append_unit_suffix(value, suffix_singular, suffix_plural, presuffix=None):
     return " ".join(suffixed_value)
 
 
-def years_to_seconds(years):
+def _years_to_seconds(years):
     return years * 365 * 24 * 60 * 60
 
 
-def months_to_seconds(months):
+def _months_to_seconds(months):
     return months * (365/12) * 24 * 60 * 60
 
 
-def weeks_to_seconds(weeks):
+def _weeks_to_seconds(weeks):
     return weeks * 7 * 24 * 60 * 60
 
 
-def days_to_seconds(days):
+def _days_to_seconds(days):
     return days * 24 * 60 * 60
 
 
-def hours_to_seconds(hours):
+def _hours_to_seconds(hours):
     return hours * 60 * 60
 
 
-def minutes_to_seconds(minutes):
+def _minutes_to_seconds(minutes):
     return minutes * 60
 
 
-def to_abs_seconds(**kwargs):
+def _to_abs_seconds(**kwargs):
     seconds = 0
     for key, value in kwargs.items():
         if key == "years":
-            seconds = seconds + years_to_seconds(value)
+            seconds = seconds + _years_to_seconds(value)
         if key == "months":
-            seconds = seconds + months_to_seconds(value)
+            seconds = seconds + _months_to_seconds(value)
         if key == "weeks":
-            seconds = seconds + weeks_to_seconds(value)
+            seconds = seconds + _weeks_to_seconds(value)
         if key == "days":
-            seconds = seconds + days_to_seconds(value)
+            seconds = seconds + _days_to_seconds(value)
         if key == "hours":
-            seconds = seconds + hours_to_seconds(value)
+            seconds = seconds + _hours_to_seconds(value)
         if key == "minutes":
-            seconds = seconds + minutes_to_seconds(value)
+            seconds = seconds + _minutes_to_seconds(value)
         if key == "seconds":
             seconds = seconds + value
     return seconds
 
 
-def normalize(**kwargs):
-    seconds = to_abs_seconds(**kwargs)
+def _normalize(**kwargs):
+    seconds = _to_abs_seconds(**kwargs)
 
     years = seconds / 31556900
     seconds = seconds % 31556900
@@ -87,7 +87,7 @@ def normalize(**kwargs):
     }
 
 
-def is_within_interval(value, interval_start, interval_end):
+def _is_within_interval(value, interval_start, interval_end):
     if value > interval_start and value <= interval_end:
         return True
     return False
