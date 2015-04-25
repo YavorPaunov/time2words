@@ -1,4 +1,4 @@
-class Command(object):
+class _Command(object):
 
     def __init__(self, *args, **kwargs):
         self.args = args or []
@@ -11,7 +11,7 @@ class Command(object):
         pass
 
 
-class Chain(object):
+class _Chain(object):
 
     def __init__(self):
         self.commands = []

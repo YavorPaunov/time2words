@@ -1,24 +1,44 @@
 from num2words import num2words
-from utils import to_abs_seconds, is_within_interval, append_unit_suffix
-from utils import normalize
-from chain import Chain
-from commands import LessThan1M, LessThan1H, LessThan23H, LessThan6D1H
-from commands import LessThan25D10H, LessThan11MM, LessThan10Y, MoreThan10Y
+from utils import _to_abs_seconds, _is_within_interval, _append_unit_suffix
+from utils import _normalize
+from chain import _Chain
+from commands import _LessThan1M, _LessThan1H, _LessThan23H, _LessThan6D1H
+from commands import _LessThan25D10H, _LessThan11MM, _LessThan10Y, _MoreThan10Y
 from localization import locales, _default
 
 __version__ = '0.0.2'
 
 
-def approx_time(l10n=locales.get(_default), **kwargs):
-    kwargs = normalize(**kwargs)
+def relative_time_to_text(l10n=locales.get(_default), **kwargs):
+    """
+    Return an aproximate textual representation of the provioded duration of
+    time.
 
-    cor = Chain()
-    cor.add(LessThan1M(l10n, **kwargs))
-    cor.add(LessThan1H(l10n, **kwargs))
-    cor.add(LessThan23H(l10n, **kwargs))
-    cor.add(LessThan6D1H(l10n, **kwargs))
-    cor.add(LessThan25D10H(l10n, **kwargs))
-    cor.add(LessThan11MM(l10n, **kwargs))
-    cor.add(LessThan10Y(l10n, **kwargs))
-    cor.add(MoreThan10Y(l10n, **kwargs))
+    Examples:
+    relative_time_to_text(hours=6, minutes=34) -> "six and a half hours"
+    relative_time_to_text(years=5, months=8, days=5) -> "less than six years"
+
+    Keyword arguments:
+    l10n -- The
+    seconds
+    minutes
+    hours
+    days
+    weeks
+    months
+    years
+    """
+    kwargs = _normalize(**kwargs)
+
+    cor = _Chain()
+    cor.add(_LessThan1M(l10n, **kwargs))
+    cor.add(_LessThan1H(l10n, **kwargs))
+    cor.add(_LessThan23H(l10n, **kwargs))
+    cor.add(_LessThan6D1H(l10n, **kwargs))
+    cor.add(_LessThan25D10H(l10n, **kwargs))
+    cor.add(_LessThan11MM(l10n, **kwargs))
+    cor.add(_LessThan10Y(l10n, **kwargs))
+    cor.add(_MoreThan10Y(l10n, **kwargs))
     return cor.run()
+
+# TO DO: time_of_day_to_text
