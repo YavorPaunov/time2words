@@ -6,7 +6,7 @@ from commands import _LessThan1M, _LessThan1H, _LessThan23H, _LessThan6D1H
 from commands import _LessThan25D10H, _LessThan11MM, _LessThan10Y, _MoreThan10Y
 from localization import locales, _default
 
-__version__ = '0.0.2'
+__version__ = '0.1.0'
 
 
 def relative_time_to_text(l10n=locales.get(_default), **kwargs):
@@ -19,7 +19,7 @@ def relative_time_to_text(l10n=locales.get(_default), **kwargs):
     relative_time_to_text(years=5, months=8, days=5) -> "less than six years"
 
     Keyword arguments:
-    l10n -- The
+    l10n -- The locale of the language for the result. Default is en_US.
     seconds
     minutes
     hours
