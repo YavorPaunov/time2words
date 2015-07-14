@@ -18,16 +18,7 @@ def read(*filenames, **kwargs):
     return sep.join(buf)
 
 
-long_description = read('README.rst', 'CHANGES.rst')
-
-try:
-    import pypandoc
-    long_description = read('README.srt')
-    long_description += "\r\n"
-    long_description += read('CHANGES.srt')
-
-except (IOError, ImportError):
-    pass
+long_description = read('README.rst')
 
 setup(name='time2words',
       version=time2words.__version__,
