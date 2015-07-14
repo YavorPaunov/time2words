@@ -20,15 +20,6 @@ def read(*filenames, **kwargs):
 
 long_description = read('README.rst', 'CHANGES.rst')
 
-try:
-    import pypandoc
-    long_description = read('README.srt')
-    long_description += "\r\n"
-    long_description += read('CHANGES.srt')
-
-except (IOError, ImportError):
-    pass
-
 setup(name='time2words',
       version=time2words.__version__,
       description='A Python library for converting numerical representation '
