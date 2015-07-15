@@ -3,8 +3,6 @@ import os
 
 from setuptools import find_packages, setup
 
-import time2words
-
 here = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -21,7 +19,7 @@ def read(*filenames, **kwargs):
 long_description = read('README.rst')
 
 setup(name='time2words',
-      version=time2words.__version__,
+      version="0.1.2",
       description='A Python library for converting numerical representation '
       'of time to text.',
       long_description=long_description,
